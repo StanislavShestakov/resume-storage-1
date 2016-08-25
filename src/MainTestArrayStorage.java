@@ -23,6 +23,7 @@ public class MainTestArrayStorage {
 
         printAll();
         ARRAY_STORAGE.delete(r1.uuid);
+        ARRAY_STORAGE.delete("dummy");
         printAll();
         ARRAY_STORAGE.clear();
         printAll();

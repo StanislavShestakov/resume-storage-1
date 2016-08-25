@@ -14,10 +14,11 @@ public class ArrayStorage {
 
     void save(Resume r) {
         if (r == null) return;
-        //find resume. if storage contain resume then replace
+        //find resume. if storage contain resume
+        // then end
         for (int i = 0; i < size; i++) {
             if (storage[i].uuid.equals(r.uuid)) {
-                storage[i] = r;
+//                storage[i] = r;
                 return;
             }
         }
@@ -55,6 +56,9 @@ public class ArrayStorage {
                         numMoved);
             storage[--size] = null;
 
+        }
+        else{
+            System.out.println(String.format("Can not delete Resume(uuid=%s). Not found", uuid));
         }
 
     }
