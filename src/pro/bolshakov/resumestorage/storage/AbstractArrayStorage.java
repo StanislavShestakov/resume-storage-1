@@ -1,5 +1,8 @@
 package pro.bolshakov.resumestorage.storage;
 
+import pro.bolshakov.resumestorage.exception.ExistStorageException;
+import pro.bolshakov.resumestorage.exception.NotExistStorageException;
+import pro.bolshakov.resumestorage.exception.StorageException;
 import pro.bolshakov.resumestorage.model.Resume;
 
 import java.util.Arrays;
@@ -8,10 +11,6 @@ import java.util.Arrays;
  * Array based storage for Resumes
  */
 public abstract class AbstractArrayStorage implements Storage{
-
-    public static final String RESUME_DID_NOT_FIND_BY_UUID_S = "Resume did not find by uuid=%s";
-    public static final String THE_STORAGE_ALREADY_HAVE_A_RESUME_BY_UUID_S = "The storage already have a resume by uuid=%s";
-    public static final String STORAGE_IS_FULL = "Storage is full";
 
     protected static final int STORAGE_LIMIT = 10000;
 
@@ -28,13 +27,11 @@ public abstract class AbstractArrayStorage implements Storage{
         if (r == null) return;
         int ind = getIndex(r.getUuid());
         if(ind > -1){
-            System.out.println(String.format(THE_STORAGE_ALREADY_HAVE_A_RESUME_BY_UUID_S, r.getUuid()));
-            return;
+            throw new ExistStorageException(r.getUuid());
         }
 
         if (size == storage.length){
-            System.out.println(STORAGE_IS_FULL);
-            return;
+            throw new StorageException("Storage overflow", r.getUuid());
         }
         insertElement(r, ind);
         size++;
@@ -43,8 +40,7 @@ public abstract class AbstractArrayStorage implements Storage{
     public void delete(String uuid) {
         int ind = getIndex(uuid);
         if(ind < 0){
-            System.out.println(String.format(RESUME_DID_NOT_FIND_BY_UUID_S, uuid));
-            return;
+            throw new NotExistStorageException(uuid);
         }
 
         fillDeletedElement(ind);
@@ -59,8 +55,7 @@ public abstract class AbstractArrayStorage implements Storage{
     public Resume get(String uuid) {
         int ind = getIndex(uuid);
         if(ind < 0){
-            System.out.println(String.format(RESUME_DID_NOT_FIND_BY_UUID_S, uuid));
-            return null;
+            throw new NotExistStorageException(uuid);
         }
         else {
             return storage[ind];
@@ -70,7 +65,7 @@ public abstract class AbstractArrayStorage implements Storage{
     public void update(Resume r) {
         int ind = getIndex(r.getUuid());
         if(ind < 0){
-            System.out.println(String.format(RESUME_DID_NOT_FIND_BY_UUID_S, r.getUuid()));
+            throw new NotExistStorageException(r.getUuid());
         }
         else {
             storage[ind] = r;
