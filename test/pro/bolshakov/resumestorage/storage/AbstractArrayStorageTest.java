@@ -20,6 +20,10 @@ public class AbstractArrayStorageTest {
 
     protected static final int STORAGE_LIMIT = 10000;
 
+    public AbstractArrayStorageTest(Storage storage) {
+        this.storage = storage;
+    }
+
     @Before
     public void setUp() throws Exception {
         storage.clear();
@@ -98,4 +102,6 @@ public class AbstractArrayStorageTest {
         Resume[] arr = {new Resume(UUID_1), new Resume(UUID_2), new Resume(UUID_3)};
         assertArrayEquals(arr, storage.getAll());
     }
+
+
 }
