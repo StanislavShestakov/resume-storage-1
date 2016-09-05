@@ -8,7 +8,7 @@ import java.util.*;
 
 public class ListStorage extends AbstractStorage{
 
-    List<Resume> storage = new ArrayList<>();
+    private List<Resume> storage = new ArrayList<>();
 
     @Override
     public void clear() {
@@ -25,56 +25,49 @@ public class ListStorage extends AbstractStorage{
     }
 
     @Override
-    public void save(Resume r) {
-        if(storage.contains(r)){
-            throw new ExistStorageException(r.getUuid());
+    protected Integer getSearchKey(String uuid) {
+        for (int i = 0; i<storage.size(); i++){
+            if(storage.get(i).getUuid().equals(uuid)){
+                return i;
+            }
         }
+        return null;
+    }
+
+    @Override
+    protected boolean isExist(Object searchKey) {
+        return searchKey != null;
+    }
+
+    @Override
+    protected void doSave(Resume r, Object searchKey) {
         storage.add(r);
     }
 
     @Override
-    public Resume get(String uuid) {
-
-        Resume r = null;
-        for (Resume resume: storage){
-            if(resume.getUuid().equals(uuid)){
-                r = resume;
-                break;
-            }
-        }
-
-        if(r == null){
-            throw new NotExistStorageException(uuid);
-        }
-
-        return r;
+    protected void doDelete(Object searchKey) {
+        storage.remove(((Integer)searchKey).intValue());
     }
 
     @Override
-    public void delete(String uuid) {
+    protected Resume doGet(Object searchKey) {
+        return storage.get((Integer)searchKey);
+    }
 
-        Iterator<Resume> iterator = storage.iterator();
-        while (iterator.hasNext()){
-            Resume r = iterator.next();
-            if(r.getUuid().equals(uuid)){
-                iterator.remove();
-                return;
-            }
-        }
-
-        throw new NotExistStorageException(uuid);
-
+    @Override
+    protected void doUpdate(Resume r, Object searchKey) {
+        storage.set((Integer)searchKey, r);
     }
 
     @Override
     public Resume[] getAll() {
-        Resume[] arr = new Resume[storage.size()];
-        storage.toArray(arr);
-        return arr;
+        return storage.toArray(new Resume[storage.size()]);
     }
 
     @Override
     public int size() {
         return storage.size();
     }
+
+
 }
