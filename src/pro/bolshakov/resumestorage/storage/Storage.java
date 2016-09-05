@@ -2,6 +2,9 @@ package pro.bolshakov.resumestorage.storage;
 
 import pro.bolshakov.resumestorage.model.Resume;
 
+import java.util.Comparator;
+import java.util.List;
+
 /**
  * Array based storage for Resumes
  */

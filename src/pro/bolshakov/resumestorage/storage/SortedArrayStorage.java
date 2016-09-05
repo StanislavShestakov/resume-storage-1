@@ -3,6 +3,7 @@ package pro.bolshakov.resumestorage.storage;
 import pro.bolshakov.resumestorage.model.Resume;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class SortedArrayStorage extends AbstractArrayStorage {
 
@@ -26,5 +27,6 @@ public class SortedArrayStorage extends AbstractArrayStorage {
             System.arraycopy(storage, index + 1, storage, index, numMoved);
         }
     }
+
 
 }

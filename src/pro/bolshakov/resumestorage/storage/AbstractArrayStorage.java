@@ -6,12 +6,12 @@ import pro.bolshakov.resumestorage.exception.StorageException;
 import pro.bolshakov.resumestorage.model.Resume;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Array based storage for Resumes
  */
 public abstract class AbstractArrayStorage extends AbstractStorage{
-
     protected static final int STORAGE_LIMIT = 10000;
 
     protected Resume[] storage = new Resume[STORAGE_LIMIT];
@@ -66,5 +66,4 @@ public abstract class AbstractArrayStorage extends AbstractStorage{
         Arrays.fill(storage, 0, size, null);
         size = 0;
     }
-
 }

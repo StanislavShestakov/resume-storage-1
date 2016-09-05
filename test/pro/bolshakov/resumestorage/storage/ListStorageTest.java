@@ -1,6 +1,10 @@
 package pro.bolshakov.resumestorage.storage;
 
-public class ListStorageTest extends AbstractStorageTest {
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+public class ListStorageTest extends AbstractStorageTest{
 
     public ListStorageTest() {
         super(new ListStorage());

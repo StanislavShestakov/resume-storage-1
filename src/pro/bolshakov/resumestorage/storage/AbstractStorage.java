@@ -2,10 +2,7 @@ package pro.bolshakov.resumestorage.storage;
 
 import pro.bolshakov.resumestorage.exception.ExistStorageException;
 import pro.bolshakov.resumestorage.exception.NotExistStorageException;
-import pro.bolshakov.resumestorage.exception.StorageException;
 import pro.bolshakov.resumestorage.model.Resume;
-
-import java.util.Arrays;
 
 public abstract class AbstractStorage implements Storage {
 

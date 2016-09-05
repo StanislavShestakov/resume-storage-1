@@ -69,5 +69,4 @@ public class ListStorage extends AbstractStorage{
         return storage.size();
     }
 
-
 }
