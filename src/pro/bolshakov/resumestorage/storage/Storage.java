@@ -10,6 +10,8 @@ import java.util.List;
  */
 public interface Storage {
 
+    Comparator<Resume> RESUME_COMPARATOR = (o1, o2) -> o1.getUuid().compareTo(o2.getUuid());
+
     void clear();
 
     void update(Resume r);
@@ -23,7 +25,7 @@ public interface Storage {
     /**
      * @return array, contains only Resumes in storage (without null)
      */
-    Resume[] getAll();
+    List<Resume> getAllSorted();
 
     int size();
 }

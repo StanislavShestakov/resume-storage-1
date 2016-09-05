@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 public class AbstractStorageTest {
 
-    private static final Comparator<Resume> RESUME_COMPARATOR = (o1, o2) -> o1.getUuid().compareTo(o2.getUuid().toString());
+    private static final Comparator<Resume> RESUME_COMPARATOR = (o1, o2) -> o1.getUuid().compareTo(o2.getUuid());
 
     protected Storage storage;
     private static final String UUID_1 = "uuid1";
@@ -80,7 +80,7 @@ public class AbstractStorageTest {
 
     private void assertArrayWithSort(Resume... resumes){
         List<Resume> arr = Arrays.asList(resumes);
-        assertTrue(arr.containsAll(Arrays.asList(storage.getAll())));
+        assertTrue(arr.containsAll(storage.getAllSorted()));
     }
 
 }

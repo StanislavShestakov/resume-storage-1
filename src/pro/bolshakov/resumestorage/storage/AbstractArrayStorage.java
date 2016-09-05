@@ -5,6 +5,8 @@ import pro.bolshakov.resumestorage.exception.NotExistStorageException;
 import pro.bolshakov.resumestorage.exception.StorageException;
 import pro.bolshakov.resumestorage.model.Resume;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -54,8 +56,10 @@ public abstract class AbstractArrayStorage extends AbstractStorage{
         return ((Integer) index) >= 0;
     }
 
-    public Resume[] getAll() {
-        return Arrays.copyOf(storage, size);
+    public List<Resume> getAllSorted() {
+        List<Resume> list = Arrays.asList(Arrays.copyOf(storage, size));
+        list.sort(RESUME_COMPARATOR);
+        return list;
     }
 
     public int size() {
