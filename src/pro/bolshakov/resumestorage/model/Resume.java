@@ -49,6 +49,22 @@ public class Resume implements Comparable<Resume>{
 
     }
 
+    public Map<String, String> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(Map<String, String> contacts) {
+        this.contacts = contacts;
+    }
+
+    public Map<SectionType, Section> getSections() {
+        return sections;
+    }
+
+    public void setSections(Map<SectionType, Section> sections) {
+        this.sections = sections;
+    }
+
     @Override
     public int hashCode() {
         int result = uuid.hashCode();
