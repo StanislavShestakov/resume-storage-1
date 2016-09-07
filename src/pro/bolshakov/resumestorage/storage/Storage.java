@@ -10,9 +10,7 @@ import java.util.List;
  */
 public interface Storage {
 
-    Comparator<Resume> RESUME_COMPARATOR = (o1, o2) -> o1.getUuid().compareTo(o2.getUuid());
-
-    void clear();
+     void clear();
 
     void update(Resume r);
 

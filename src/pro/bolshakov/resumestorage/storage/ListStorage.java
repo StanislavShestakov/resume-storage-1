@@ -6,7 +6,7 @@ import pro.bolshakov.resumestorage.model.Resume;
 
 import java.util.*;
 
-public class ListStorage extends AbstractStorage{
+public class ListStorage extends AbstractStorage<Integer>{
 
     private List<Resume> storage = new ArrayList<>();
 
@@ -17,7 +17,7 @@ public class ListStorage extends AbstractStorage{
 
     @Override
     public void update(Resume r) {
-        int ind = storage.indexOf(r);
+        int ind = getSearchKey(r.getUuid());
         if(ind == -1){
             throw new NotExistStorageException(r.getUuid());
         }
@@ -35,35 +35,33 @@ public class ListStorage extends AbstractStorage{
     }
 
     @Override
-    protected boolean isExist(Object searchKey) {
+    protected boolean isExist(Integer searchKey) {
         return searchKey != null;
     }
 
     @Override
-    protected void doSave(Resume r, Object searchKey) {
+    protected void doSave(Resume r, Integer searchKey) {
         storage.add(r);
     }
 
     @Override
-    protected void doDelete(Object searchKey) {
-        storage.remove(((Integer)searchKey).intValue());
+    protected void doDelete(Integer searchKey) {
+        storage.remove(searchKey.intValue());
     }
 
     @Override
-    protected Resume doGet(Object searchKey) {
-        return storage.get((Integer)searchKey);
+    protected Resume doGet(Integer searchKey) {
+        return storage.get(searchKey);
     }
 
     @Override
-    protected void doUpdate(Resume r, Object searchKey) {
-        storage.set((Integer)searchKey, r);
+    protected void doUpdate(Resume r, Integer searchKey) {
+        storage.set(searchKey, r);
     }
 
     @Override
-    public List<Resume> getAllSorted() {
-        List<Resume> list = new ArrayList<>(storage);
-        list.sort(RESUME_COMPARATOR);
-        return list;
+    public List<Resume> doCopyAll() {
+        return new ArrayList<>(storage);
     }
 
     @Override
