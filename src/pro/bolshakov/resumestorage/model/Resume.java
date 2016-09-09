@@ -37,12 +37,20 @@ public class Resume implements Comparable<Resume>{
         return fullName;
     }
 
-     public String getContact(ContactType type){
+    public String getContact(ContactType type){
         return contacts.get(type);
     }
 
     public Section getSection(SectionType type){
         return sections.get(type);
+    }
+
+    public void addContact(ContactType type, String contact){
+        contacts.put(type, contact);
+    }
+
+    public void addSection(SectionType type, Section section){
+        sections.put(type, section);
     }
 
     @Override
