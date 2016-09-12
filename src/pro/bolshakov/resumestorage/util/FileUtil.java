@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileUtil {
-    public static List<File> getAllFiles(File file){
+    public static List<File> getAllFiles(File directory){
 
         List<File> list = new ArrayList<>();
-        if(file.isDirectory()){
-            addSubFiles(file, list);
+        if(directory.isDirectory()){
+            addSubFiles(directory, list);
         }
         else {
-            list.add(file);
+            list.add(directory);
         }
 
         return list;

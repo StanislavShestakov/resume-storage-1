@@ -65,8 +65,8 @@ public class AbstractStorageTest {
     private static final Organization ORGANIZATION_1 = new Organization(
             ORGANIZATION_NAME_1,
             ORGANIZATION_URL_1,
-            Arrays.asList(new OrganizationData(START_DATE_1,END_DATE_1,ORG_TITLE_1,ORG_DESCRIPTION_1),
-                    new OrganizationData(START_DATE_2,END_DATE_2,ORG_TITLE_2,"")));
+            Arrays.asList(new Organization.Position(START_DATE_1,END_DATE_1,ORG_TITLE_1,ORG_DESCRIPTION_1),
+                    new Organization.Position(START_DATE_2,END_DATE_2,ORG_TITLE_2,"")));
 
     private static final OrganizationSection SECTION_3 = new OrganizationSection(Collections.singletonList(ORGANIZATION_1));
 
