@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import pro.bolshakov.resumestorage.model.*;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
@@ -13,6 +14,8 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class AbstractStorageTest {
+
+    protected static final String STORAGE_DIR = "D:\\Develop\\Java\\resume-storage\\storage";
 
     private static final Comparator<Resume> RESUME_COMPARATOR = (o1, o2) -> o1.getUuid().compareTo(o2.getUuid());
 

@@ -2,11 +2,14 @@ package pro.bolshakov.resumestorage.model;
 
 import pro.bolshakov.resumestorage.util.DateUtil;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.*;
 
-public class Organization {
+public class Organization implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private final Link homePage;
 
@@ -56,7 +59,9 @@ public class Organization {
                 '}';
     }
 
-    public static class Position {
+    public static class Position implements Serializable{
+
+        private static final long serialVersionUID = 1L;
 
         private final LocalDate startDate;
         private final LocalDate endDate;
