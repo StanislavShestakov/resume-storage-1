@@ -1,6 +1,5 @@
 package pro.bolshakov.resumestorage.storage;
 
-
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -14,7 +13,8 @@ import org.junit.runners.Suite;
                 MapResumeStorageTest.class,
                 ObjectPathStorageTest.class,
                 ObjectFileStorageTest.class,
-                XmlPathStorageTest.class
+                XmlPathStorageTest.class,
+                JsonPathStorageTest.class
         }
 )
 public class AllStorageTest {
